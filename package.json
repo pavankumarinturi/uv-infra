@@ -1,0 +1,21 @@
+{
+  "name": "uv-infra",
+  "version": "1.0.0",
+  "description": "---",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavankumarinturi/uv-infra.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/pavankumarinturi/uv-infra/issues"
+  },
+  "homepage": "https://github.com/pavankumarinturi/uv-infra#readme"
+}
