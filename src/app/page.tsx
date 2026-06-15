@@ -1,4 +1,8 @@
 import Hero from '@/components/sections/Hero';
+import EnquiryForm from '@/components/sections/EnquiryForm';
+import Projects from '@/components/sections/Projects';
+import FloorPlanViewer from '@/components/sections/FloorPlanViewer';
+import Gallery from '@/components/sections/Gallery';
 
 export default function Home() {
   return (
@@ -7,53 +11,10 @@ export default function Home() {
       <Hero />
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-dark mb-4 font-playfair text-center">
-            Our Projects
-          </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Discover our flagship residential projects across Hyderabad
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Placeholder Project Cards */}
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200 hover:shadow-lg transition-shadow">
-                <div className="h-40 bg-gradient-to-r from-primary to-dark rounded-lg mb-4"></div>
-                <h3 className="text-xl font-bold text-dark mb-2 font-playfair">Project {i}</h3>
-                <p className="text-gray-600 text-sm mb-4">Premium residential property with modern amenities</p>
-                <div className="text-sm text-primary font-semibold">Learn More →</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Projects />
 
       {/* Floor Plans Section */}
-      <section id="floor-plans" className="py-20 px-6 bg-background">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-dark mb-4 font-playfair text-center">
-            Floor Plans
-          </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Thoughtfully designed layouts for modern living
-          </p>
-          <div className="bg-white rounded-2xl p-8 border border-blue-200">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="h-64 bg-gradient-to-br from-blue-200 to-blue-300 rounded-lg"></div>
-              <div className="flex flex-col justify-center">
-                <h3 className="text-2xl font-bold text-dark mb-4 font-playfair">2 BHK Floor Plan</h3>
-                <div className="space-y-3">
-                  <p className="text-gray-700"><span className="font-semibold text-primary">Area:</span> 1,150 sq.ft.</p>
-                  <p className="text-gray-700"><span className="font-semibold text-primary">Facing:</span> East & West</p>
-                  <p className="text-gray-700"><span className="font-semibold text-primary">Bedrooms:</span> 2</p>
-                  <p className="text-gray-700"><span className="font-semibold text-primary">Bathrooms:</span> 2</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FloorPlanViewer />
 
       {/* Specifications Section */}
       <section id="specifications" className="py-20 px-6 bg-white">
@@ -83,26 +44,10 @@ export default function Home() {
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="py-20 px-6 bg-background">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-dark mb-4 font-playfair text-center">
-            Gallery
-          </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Explore our residential projects and amenities
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="h-64 bg-gradient-to-br from-blue-300 to-primary rounded-xl overflow-hidden hover:scale-105 transition-transform cursor-pointer flex items-center justify-center">
-                <div className="text-white text-center">
-                  <div className="text-4xl mb-2">🏘️</div>
-                  <p className="font-semibold">Project View {i}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Gallery />
+
+      {/* Enquiry Form Section */}
+      <EnquiryForm />
 
       {/* Contact Section */}
       <section id="contact" className="py-20 px-6 bg-white">

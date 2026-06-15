@@ -39,3 +39,30 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+
+# Build output
+dist/
+
+# Turbo
+.turbo/
+
+# Test outputs
+/test-results/
+/playwright-report/
+
+# Lock file (uncomment if team uses yarn or pnpm)
+# package-lock.json
+
+# Local environment overrides
+.env.local
+.env.*.local
