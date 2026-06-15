@@ -1,76 +1,36 @@
-# UV Infra — Cloud Deployment Guide
-### Professional Real Estate Website · Full Stack · Secure · Production-Ready
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
----
+## Getting Started
 
-## 📁 Document Index
-
-| File | Purpose |
-|------|---------|
-| `README.md` | This file — project overview & quick start |
-| `ARCHITECTURE.md` | Tech stack, folder structure, system design |
-| `SECURITY.md` | Security best practices, language recommendation |
-| `DEPLOYMENT.md` | Step-by-step Vercel + Namecheap deployment |
-| `PROMPTS.md` | AI prompts to build each feature with Claude Code |
-| `ENV_TEMPLATE.md` | All environment variables needed |
-| `CI_CD.md` | GitHub Actions pipeline setup |
-
----
-
-## 🏗️ What We Are Building
-
-A **production-grade real estate marketing website** for UV Infra with:
-
-- ✅ Static + dynamic pages (Next.js 14 App Router)
-- ✅ Lead capture form with email notifications
-- ✅ Project gallery with image upload (Cloudinary)
-- ✅ Floor plan viewer
-- ✅ SEO optimised for Hyderabad real estate searches
-- ✅ WhatsApp enquiry integration
-- ✅ Admin dashboard to manage leads (optional Phase 2)
-- ✅ Hosted on Vercel · Domain: uv-infra.com (Namecheap)
-
----
-
-## ⚡ Quick Start (5 minutes)
+First, run the development server:
 
 ```bash
-# 1. Install Node.js 20+ from nodejs.org, then:
-npx create-next-app@latest uv-infra --typescript --tailwind --eslint --app --src-dir
-cd uv-infra
-
-# 2. Install dependencies
-npm install resend @vercel/analytics cloudinary react-hook-form zod
-npm install @hookform/resolvers lucide-react clsx tailwind-merge
-
-# 3. Copy your index.html content into the Next.js structure (see ARCHITECTURE.md)
-
-# 4. Set up environment variables (see ENV_TEMPLATE.md)
-cp .env.example .env.local
-
-# 5. Run locally
 npm run dev
-# Open http://localhost:3000
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
----
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🌐 Live URLs
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-| Environment | URL |
-|-------------|-----|
-| Production  | https://uv-infra.com |
-| Preview     | https://uv-infra.vercel.app |
-| Local Dev   | http://localhost:3000 |
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
----
+## Learn More
 
-## 👤 Owner / Contact
+To learn more about Next.js, take a look at the following resources:
 
-**Pavan Kumar Inturi** — Promoter & Developer, UV Infra  
-📞 +91 73860 86043 · +91 95059 44456  
-📍 2Gether Heights, Ameenpur, Hyderabad – 502032
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-> **Note:** Keep all `.env.local` files private. Never commit secrets to Git. See `SECURITY.md` for full guidelines.
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
