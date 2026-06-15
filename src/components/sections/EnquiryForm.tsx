@@ -35,8 +35,17 @@ export default function EnquiryForm() {
   const [emailError, setEmailError] = useState('');
 
   useEffect(() => {
+    console.log('EmailJS Config:', {
+      publicKey: EMAILJS_CONFIG.publicKey ? '✓ Loaded' : '✗ Missing',
+      serviceId: EMAILJS_CONFIG.serviceId ? '✓ Loaded' : '✗ Missing',
+      ownerTemplate: EMAILJS_CONFIG.templateIds.ownerNotification ? '✓ Loaded' : '✗ Missing',
+      replyTemplate: EMAILJS_CONFIG.templateIds.customerReply ? '✓ Loaded' : '✗ Missing',
+    });
     if (EMAILJS_CONFIG.publicKey) {
       emailjs.init(EMAILJS_CONFIG.publicKey);
+      console.log('EmailJS initialized successfully');
+    } else {
+      console.warn('EmailJS Public Key is missing!');
     }
   }, []);
 
@@ -105,10 +114,8 @@ export default function EnquiryForm() {
       };
 
       const projectName = projectMap[formData.project] || formData.project;
-      const submittedAt = new Date().toLocaleString('en-IN', {
-        dateStyle: 'long',
-        timeStyle: 'short',
-      });
+      const now = new Date();
+      const submittedAt = `${now.toLocaleDateString('en-IN')} ${now.toLocaleTimeString('en-IN')}`;
 
       // Check if EmailJS is configured
       if (!EMAILJS_CONFIG.publicKey || !EMAILJS_CONFIG.serviceId) {
@@ -129,7 +136,8 @@ export default function EnquiryForm() {
 
       // Send owner notification email
       if (EMAILJS_CONFIG.templateIds.ownerNotification) {
-        await emailjs.send(
+        console.log('Sending owner notification...');
+        const ownerResponse = await emailjs.send(
           EMAILJS_CONFIG.serviceId,
           EMAILJS_CONFIG.templateIds.ownerNotification,
           {
@@ -142,15 +150,17 @@ export default function EnquiryForm() {
             submitted_at: submittedAt,
           }
         );
+        console.log('Owner notification sent:', ownerResponse);
       }
 
       // Send customer auto-reply email
       if (EMAILJS_CONFIG.templateIds.customerReply) {
-        await emailjs.send(
+        console.log('Sending customer auto-reply...');
+        const replyResponse = await emailjs.send(
           EMAILJS_CONFIG.serviceId,
           EMAILJS_CONFIG.templateIds.customerReply,
           {
-            to_email: formData.email,
+            from_email: formData.email,
             from_name: formData.name,
             project: projectName,
             from_phone: formData.phone,
@@ -158,6 +168,7 @@ export default function EnquiryForm() {
             submitted_at: submittedAt,
           }
         );
+        console.log('Customer reply sent:', replyResponse);
       }
 
       // Also save to database via API
@@ -171,7 +182,9 @@ export default function EnquiryForm() {
       setFormData({ name: '', email: '', phone: '', project: '', message: '' });
       setTimeout(() => setSubmitted(false), 5000);
     } catch (error) {
-      console.error('Error submitting form:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.error('Error submitting form:', errorMessage);
+      console.error('Full error:', error);
       setEmailError('Failed to send enquiry. Please try again or contact us directly.');
     } finally {
       setLoading(false);
