@@ -1,25 +1,10 @@
+import Hero from '@/components/sections/Hero';
+
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section id="about" className="min-h-screen bg-gradient-to-br from-background via-blue-100 to-background flex items-center justify-center px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6 font-playfair">
-            Welcome to UV Infra
-          </h1>
-          <p className="text-lg md:text-xl text-gray-700 mb-8">
-            Premium residential apartments in Hyderabad. Build your dream home with confidence.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 bg-primary text-white rounded-lg hover:bg-dark transition-colors">
-              Explore Projects
-            </button>
-            <button className="px-8 py-3 border-2 border-primary text-primary rounded-lg hover:bg-blue-50 transition-colors">
-              Schedule a Visit
-            </button>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       {/* Projects Section */}
       <section id="projects" className="py-20 px-6 bg-white">
