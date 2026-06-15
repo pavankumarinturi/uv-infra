@@ -18,6 +18,10 @@ const config: Config = {
         playfair: ['var(--font-playfair)', 'serif'],
         inter: ['var(--font-inter)', 'sans-serif'],
       },
+      zIndex: {
+        100: '100',
+        50: '50',
+      },
     },
   },
   plugins: [],
