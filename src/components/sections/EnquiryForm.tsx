@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG, CONTACT_INFO } from '@/lib/emailjs-config';
 
 interface FormData {
   name: string;
@@ -30,6 +32,13 @@ export default function EnquiryForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState('');
+
+  useEffect(() => {
+    if (EMAILJS_CONFIG.publicKey) {
+      emailjs.init(EMAILJS_CONFIG.publicKey);
+    }
+  }, []);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -80,6 +89,7 @@ export default function EnquiryForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setEmailError('');
 
     if (!validateForm()) {
       return;
@@ -87,27 +97,82 @@ export default function EnquiryForm() {
 
     setLoading(true);
     try {
-      const response = await fetch('/api/enquiry', {
+      const projectMap: { [key: string]: string } = {
+        project1: 'Premium Residences - 2BHK',
+        project2: 'Luxury Apartments - 3BHK',
+        project3: 'Grand Villas - 4BHK',
+        general: 'General Enquiry',
+      };
+
+      const projectName = projectMap[formData.project] || formData.project;
+      const submittedAt = new Date().toLocaleString('en-IN', {
+        dateStyle: 'long',
+        timeStyle: 'short',
+      });
+
+      // Check if EmailJS is configured
+      if (!EMAILJS_CONFIG.publicKey || !EMAILJS_CONFIG.serviceId) {
+        // Fallback to API endpoint if EmailJS not configured
+        const response = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          setSubmitted(true);
+          setFormData({ name: '', email: '', phone: '', project: '', message: '' });
+          setTimeout(() => setSubmitted(false), 5000);
+        }
+        return;
+      }
+
+      // Send owner notification email
+      if (EMAILJS_CONFIG.templateIds.ownerNotification) {
+        await emailjs.send(
+          EMAILJS_CONFIG.serviceId,
+          EMAILJS_CONFIG.templateIds.ownerNotification,
+          {
+            to_email: CONTACT_INFO.email,
+            from_name: formData.name,
+            from_email: formData.email,
+            from_phone: formData.phone,
+            project: projectName,
+            message: formData.message,
+            submitted_at: submittedAt,
+          }
+        );
+      }
+
+      // Send customer auto-reply email
+      if (EMAILJS_CONFIG.templateIds.customerReply) {
+        await emailjs.send(
+          EMAILJS_CONFIG.serviceId,
+          EMAILJS_CONFIG.templateIds.customerReply,
+          {
+            to_email: formData.email,
+            from_name: formData.name,
+            project: projectName,
+            from_phone: formData.phone,
+            message: formData.message,
+            submitted_at: submittedAt,
+          }
+        );
+      }
+
+      // Also save to database via API
+      await fetch('/api/enquiry', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        setSubmitted(true);
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          project: '',
-          message: '',
-        });
-        setTimeout(() => setSubmitted(false), 5000);
-      }
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', project: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
+      setEmailError('Failed to send enquiry. Please try again or contact us directly.');
     } finally {
       setLoading(false);
     }
@@ -128,7 +193,13 @@ export default function EnquiryForm() {
         {submitted && (
           <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-lg">
             <p className="text-green-800 font-semibold">✓ Thank you! Your enquiry has been submitted successfully.</p>
-            <p className="text-green-700 text-sm">We will contact you shortly.</p>
+            <p className="text-green-700 text-sm">We will contact you shortly. Check your email for confirmation.</p>
+          </div>
+        )}
+
+        {emailError && (
+          <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <p className="text-red-800 font-semibold">✗ {emailError}</p>
           </div>
         )}
 

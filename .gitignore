@@ -66,3 +66,11 @@ dist/
 # Local environment overrides
 .env.local
 .env.*.local
+
+# Documentation files (internal only)
+IMPLEMENTATION_SUMMARY.md
+QUICK_START.md
+SETUP_EMIAL.md
+
+# Root index.html (Next.js apps don't use this)
+/index.html
