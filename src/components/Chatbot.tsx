@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 interface Message {
   id: string;
@@ -416,7 +416,7 @@ const Chatbot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-7 z-[9998] w-96 max-h-96 bg-white rounded-3xl shadow-2xl flex flex-col border border-blue-200 overflow-hidden">
+        <div className="fixed bottom-24 right-7 z-[9998] w-[450px] max-h-[680px] bg-white rounded-3xl shadow-2xl flex flex-col border border-blue-200 overflow-hidden">
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-500 to-blue-900 text-white p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -512,7 +512,7 @@ const Chatbot = () => {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
                 placeholder="Type a question..."
                 className="flex-1 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               />
