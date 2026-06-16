@@ -419,8 +419,8 @@ const Chatbot = () => {
       {/* Chat Window */}
       {isOpen && (
         <div className="fixed z-[9998] bg-white rounded-2xl shadow-2xl flex flex-col border border-blue-200 overflow-hidden
-          w-[calc(100vw-32px)] max-h-[55vh] bottom-20 right-4 max-w-sm
-          sm:w-[calc(100vw-32px)] sm:max-h-[55vh] sm:bottom-20 sm:right-4
+          w-[calc(100vw-32px)] max-h-[calc(100vh-200px)] bottom-20 right-4 max-w-sm
+          sm:w-[calc(100vw-32px)] sm:max-h-[calc(100vh-200px)] sm:bottom-20 sm:right-4
           md:w-96 md:max-h-[600px] md:bottom-28 md:right-8
           lg:w-[400px] lg:max-h-[680px] lg:bottom-28 lg:right-8">
           {/* Header */}
