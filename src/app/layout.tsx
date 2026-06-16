@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import Chatbot from "@/components/Chatbot";
 import Analytics from "@/components/Analytics";
 import StructuredData from "@/components/seo/StructuredData";
@@ -117,6 +118,7 @@ export default function RootLayout({
         <Analytics />
         <Navbar />
         <main className="pt-20">{children}</main>
+        <Footer />
         {/* Chatbot includes integrated WhatsApp functionality */}
         <Chatbot />
       </body>

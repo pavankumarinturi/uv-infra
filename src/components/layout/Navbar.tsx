@@ -81,21 +81,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <div className="flex items-center gap-3">
-            {/* SVG House Icon */}
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <svg
-                className="w-6 h-6 text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-              </svg>
-            </div>
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Logo Icon */}
+            <img src="/navbar-logo.png" alt="UV INFRA Logo" className="w-10 h-10 flex-shrink-0" />
             {/* Logo Text */}
-            <div className="hidden sm:block">
-              <div className="text-lg font-bold text-dark font-playfair">UV INFRA</div>
-              <div className="text-xs text-primary font-inter">Builders & Developers</div>
+            <div>
+              <div className="text-sm sm:text-lg font-bold text-dark font-playfair">UV INFRA</div>
+              <div className="text-xs text-primary font-inter">BUILDERS & DEVELOPERS</div>
             </div>
           </div>
 

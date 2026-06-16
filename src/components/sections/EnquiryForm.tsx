@@ -193,137 +193,135 @@ export default function EnquiryForm() {
 
   return (
     <section id="enquiry" className="py-20 px-6 bg-gradient-to-br from-background to-blue-50">
-      <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-dark mb-4 font-playfair">
-            Send us an Enquiry
-          </h2>
-          <p className="text-gray-600 text-lg">
-            Have questions about our projects? Fill out the form below and we'll get back to you soon.
-          </p>
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Placeholder for left side - in main layout this will be handled by GetInTouch section */}
+          <div className="hidden lg:block" />
+
+          <div className="max-w-2xl">
+            {submitted && (
+              <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-green-800 font-semibold">✓ Thank you! Your enquiry has been submitted successfully.</p>
+                <p className="text-green-700 text-sm">We will contact you shortly. Check your email for confirmation.</p>
+              </div>
+            )}
+
+            {emailError && (
+              <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-800 font-semibold">✗ {emailError}</p>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8 border border-blue-200">
+              {/* Name Field */}
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-dark mb-2">
+                  Full Name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="John Doe"
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
+                    errors.name ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
+                  }`}
+                />
+                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+              </div>
+
+              {/* Email Field */}
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-dark mb-2">
+                  Email Address <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="john@example.com"
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
+                    errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
+                  }`}
+                />
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+              </div>
+
+              {/* Phone Field */}
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-dark mb-2">
+                  Phone Number <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="9876543210"
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
+                    errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
+                  }`}
+                />
+                {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+              </div>
+
+              {/* Project Selection */}
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-dark mb-2">
+                  Project Interest <span className="text-red-500">*</span>
+                </label>
+                <select
+                  name="project"
+                  value={formData.project}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
+                    errors.project ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
+                  }`}
+                >
+                  <option value="">Select a project</option>
+                  <option value="project1">Premium Residences - 2BHK</option>
+                  <option value="project2">Luxury Apartments - 3BHK</option>
+                  <option value="project3">Grand Villas - 4BHK</option>
+                  <option value="general">General Enquiry</option>
+                </select>
+                {errors.project && <p className="text-red-500 text-sm mt-1">{errors.project}</p>}
+              </div>
+
+              {/* Message Field */}
+              <div className="mb-8">
+                <label className="block text-sm font-semibold text-dark mb-2">
+                  Message <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell us about your requirements and interests..."
+                  rows={5}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition resize-none ${
+                    errors.message ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
+                  }`}
+                />
+                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-gradient-to-r from-primary to-dark text-white font-semibold py-3 rounded-lg hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? 'Submitting...' : 'Send Enquiry'}
+              </button>
+
+              <p className="text-center text-gray-500 text-sm mt-4">
+                We'll get back to you within 24 hours
+              </p>
+            </form>
+          </div>
         </div>
-
-        {submitted && (
-          <div className="mb-8 p-4 bg-green-50 border border-green-200 rounded-lg">
-            <p className="text-green-800 font-semibold">✓ Thank you! Your enquiry has been submitted successfully.</p>
-            <p className="text-green-700 text-sm">We will contact you shortly. Check your email for confirmation.</p>
-          </div>
-        )}
-
-        {emailError && (
-          <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-red-800 font-semibold">✗ {emailError}</p>
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8 border border-blue-200">
-          {/* Name Field */}
-          <div className="mb-6">
-            <label className="block text-sm font-semibold text-dark mb-2">
-              Full Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="John Doe"
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
-                errors.name ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
-              }`}
-            />
-            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-          </div>
-
-          {/* Email Field */}
-          <div className="mb-6">
-            <label className="block text-sm font-semibold text-dark mb-2">
-              Email Address <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="john@example.com"
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
-                errors.email ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
-              }`}
-            />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-          </div>
-
-          {/* Phone Field */}
-          <div className="mb-6">
-            <label className="block text-sm font-semibold text-dark mb-2">
-              Phone Number <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="9876543210"
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
-                errors.phone ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
-              }`}
-            />
-            {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
-          </div>
-
-          {/* Project Selection */}
-          <div className="mb-6">
-            <label className="block text-sm font-semibold text-dark mb-2">
-              Project Interest <span className="text-red-500">*</span>
-            </label>
-            <select
-              name="project"
-              value={formData.project}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition ${
-                errors.project ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
-              }`}
-            >
-              <option value="">Select a project</option>
-              <option value="project1">Premium Residences - 2BHK</option>
-              <option value="project2">Luxury Apartments - 3BHK</option>
-              <option value="project3">Grand Villas - 4BHK</option>
-              <option value="general">General Enquiry</option>
-            </select>
-            {errors.project && <p className="text-red-500 text-sm mt-1">{errors.project}</p>}
-          </div>
-
-          {/* Message Field */}
-          <div className="mb-8">
-            <label className="block text-sm font-semibold text-dark mb-2">
-              Message <span className="text-red-500">*</span>
-            </label>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Tell us about your requirements and interests..."
-              rows={5}
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition resize-none ${
-                errors.message ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-primary'
-              }`}
-            />
-            {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-gradient-to-r from-primary to-dark text-white font-semibold py-3 rounded-lg hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? 'Submitting...' : 'Send Enquiry'}
-          </button>
-
-          <p className="text-center text-gray-500 text-sm mt-4">
-            We'll get back to you within 24 hours
-          </p>
-        </form>
       </div>
     </section>
   );

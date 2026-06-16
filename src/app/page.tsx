@@ -1,5 +1,5 @@
 import Hero from '@/components/sections/Hero';
-import EnquiryForm from '@/components/sections/EnquiryForm';
+import GetInTouch from '@/components/sections/GetInTouch';
 import Projects from '@/components/sections/Projects';
 import FloorPlanViewer from '@/components/sections/FloorPlanViewer';
 import Gallery from '@/components/sections/Gallery';
@@ -46,32 +46,8 @@ export default function Home() {
       {/* Gallery Section */}
       <Gallery />
 
-      {/* Enquiry Form Section */}
-      <EnquiryForm />
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-dark mb-4 font-playfair text-center">
-            Get in Touch
-          </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Have questions? We'd love to hear from you!
-          </p>
-          <div className="bg-gradient-to-br from-primary to-dark rounded-2xl p-12 text-center text-white">
-            <h3 className="text-3xl font-bold mb-6">Ready to Build Your Dream Home?</h3>
-            <p className="text-lg mb-8 opacity-90">Contact us today to schedule a visit or enquire about our projects</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+917386086043" className="px-8 py-3 bg-white text-primary rounded-lg hover:bg-background transition-colors font-semibold">
-                📞 +91 73860 86043
-              </a>
-              <a href="mailto:pavan@uv-infra.com" className="px-8 py-3 border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors font-semibold">
-                ✉️ Email Us
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Get In Touch Section with Contact Info & Enquiry Form */}
+      <GetInTouch />
     </>
   );
 }
