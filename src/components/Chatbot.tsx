@@ -405,7 +405,9 @@ const Chatbot = () => {
       {/* Chat Launcher Button */}
       <button
         onClick={handleOpen}
-        className="fixed bottom-6 right-6 sm:bottom-4 sm:right-4 z-[9999] w-16 h-16 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-blue-500 to-blue-900 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center"
+        className="fixed z-[9999] w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-900 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center
+          bottom-7 right-7
+          sm:bottom-5 sm:right-5 sm:w-14 sm:h-14"
         aria-label="Open UV Infra Chat"
       >
         <svg className="w-7 h-7" fill="white" viewBox="0 0 24 24">
@@ -416,7 +418,11 @@ const Chatbot = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-20 sm:bottom-16 right-7 sm:right-4 z-[9998] w-[450px] max-h-[680px] md:w-[450px] md:max-h-[680px] sm:w-[calc(100vw-32px)] sm:max-h-[calc(100vh-140px)] bg-white rounded-3xl shadow-2xl flex flex-col border border-blue-200 overflow-hidden">
+        <div className="fixed z-[9998] bg-white rounded-3xl shadow-2xl flex flex-col border border-blue-200 overflow-hidden
+          w-[450px] max-h-[680px] bottom-24 right-7
+          md:w-[450px] md:max-h-[680px] md:bottom-24 md:right-7
+          sm:w-[calc(100vw-32px)] sm:max-h-[60vh] sm:bottom-20 sm:right-4 sm:max-w-[calc(100vw-32px)]
+          max-h-[calc(100vh-180px)]">
           {/* Header */}
           <div className="bg-gradient-to-r from-blue-500 to-blue-900 text-white p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
