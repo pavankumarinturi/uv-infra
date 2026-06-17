@@ -41,6 +41,11 @@ export default function EnquiryForm() {
       ownerTemplate: EMAILJS_CONFIG.templateIds.ownerNotification ? '✓ Loaded' : '✗ Missing',
       replyTemplate: EMAILJS_CONFIG.templateIds.customerReply ? '✓ Loaded' : '✗ Missing',
     });
+    console.log('Full Config Values:', {
+      publicKey: EMAILJS_CONFIG.publicKey,
+      serviceId: EMAILJS_CONFIG.serviceId,
+      ownerTemplate: EMAILJS_CONFIG.templateIds.ownerNotification,
+    });
     if (EMAILJS_CONFIG.publicKey) {
       emailjs.init(EMAILJS_CONFIG.publicKey);
       console.log('EmailJS initialized successfully');
