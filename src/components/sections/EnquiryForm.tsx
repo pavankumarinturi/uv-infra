@@ -96,6 +96,161 @@ export default function EnquiryForm() {
     }
   };
 
+  const generateCustomerEmailHTML = (name: string, project: string, phone: string, message: string, submittedAt: string): string => {
+    return `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; background: #fff; border-radius: 8px; overflow: hidden; }
+          .header { background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%); padding: 40px 20px; text-align: center; color: white; }
+          .content { padding: 40px; }
+          .section { margin: 25px 0; }
+          .details { background: #f9f9f9; border-left: 4px solid #0066CC; padding: 20px; border-radius: 4px; }
+          .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e0e0e0; font-size: 14px; }
+          .detail-row:last-child { border-bottom: none; }
+          .label { color: #666; font-weight: 600; }
+          .value { color: #333; text-align: right; }
+          .next-steps { background: #e8f4fd; border-radius: 6px; padding: 20px; }
+          .step { padding: 10px 0; font-size: 14px; color: #333; }
+          .contact { background: #f0f7ff; border-radius: 6px; padding: 20px; }
+          .contact-item { padding: 8px 0; font-size: 14px; }
+          .footer { background: #f5f5f5; padding: 20px; text-align: center; border-top: 1px solid #e0e0e0; font-size: 12px; color: #666; }
+          .signature { margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+          a { color: #0066CC; text-decoration: none; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1 style="margin: 0; font-size: 28px;">Thank You! 🏠</h1>
+            <p style="margin: 10px 0 0 0; font-size: 14px;">Your enquiry has been received</p>
+          </div>
+          <div class="content">
+            <p>Dear <strong>${name}</strong>,</p>
+            <p style="margin-top: 15px;">Thank you for reaching out to UV Infra! We truly appreciate your interest in our premium residential properties. Your enquiry is important to us, and we're excited to help you find your perfect home.</p>
+
+            <div class="section details">
+              <h3 style="color: #0066CC; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">📋 Your Enquiry Details</h3>
+              <div class="detail-row"><span class="label">Project Interested:</span><span class="value">${project}</span></div>
+              <div class="detail-row"><span class="label">Your Phone:</span><span class="value">${phone}</span></div>
+              <div class="detail-row"><span class="label">Submitted On:</span><span class="value">${submittedAt}</span></div>
+              <div class="detail-row"><span class="label">Your Message:</span><span class="value">${message}</span></div>
+            </div>
+
+            <div class="section next-steps">
+              <h3 style="color: #0066CC; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">⏭️ What Happens Next?</h3>
+              <div class="step">✓ Our team reviews your enquiry carefully</div>
+              <div class="step">✓ We'll call you within 24 hours with personalized information</div>
+              <div class="step">✓ Schedule a convenient site visit at your preferred time</div>
+            </div>
+
+            <div class="section contact">
+              <h3 style="color: #0066CC; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">📞 Get In Touch</h3>
+              <p style="margin: 0 0 15px 0; font-size: 14px;">For urgent queries or to speak with us immediately:</p>
+              <div class="contact-item"><strong>📞 +91 73860 86043</strong> (Pavan Kumar Inturi)</div>
+              <div class="contact-item"><strong>📞 +91 95059 44456</strong></div>
+              <div class="contact-item"><strong>📍</strong> 2Gether Heights, Ameenpur, Hyderabad – 502032</div>
+              <div class="contact-item" style="margin-top: 15px;"><strong>💬 WhatsApp: +91 73860 86043</strong></div>
+            </div>
+
+            <p style="text-align: center; margin: 25px 0; font-size: 14px; color: #666;">
+              Visit our website: <a href="https://uv-infra.com">www.uv-infra.com</a>
+            </p>
+
+            <div class="signature">
+              <p style="margin-bottom: 15px;">Warm regards,</p>
+              <p style="margin: 0; font-weight: 600; color: #0066CC;">Pavan Kumar Inturi</p>
+              <p style="margin: 5px 0 0 0; font-size: 13px; color: #666;">Promoter & Developer – UV Infra</p>
+            </div>
+          </div>
+          <div class="footer">
+            <p>UV Infra - Premium Residential Properties</p>
+            <p style="margin-top: 10px; font-size: 11px; color: #999;">This is an automated confirmation email. Please do not reply to this email.</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+  };
+
+  const generateOwnerEmailHTML = (name: string, email: string, project: string, phone: string, message: string, submittedAt: string): string => {
+    return `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; background: #fff; border-radius: 8px; overflow: hidden; }
+          .header { background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%); padding: 30px 20px; text-align: center; color: white; }
+          .alert { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px 20px; margin: 20px; color: #856404; font-size: 13px; }
+          .content { padding: 30px 20px; }
+          .section { margin-bottom: 25px; }
+          .title { color: #0066CC; font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; }
+          .card { background: #f9f9f9; border-left: 4px solid #0066CC; padding: 15px; border-radius: 4px; }
+          .info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e0e0e0; font-size: 13px; }
+          .info-row:last-child { border-bottom: none; }
+          .label { color: #666; font-weight: 600; }
+          .value { color: #333; text-align: right; }
+          .message-box { background: #f0f7ff; border-radius: 4px; padding: 15px; margin-top: 10px; border-left: 4px solid #0066CC; }
+          .footer { background: #f5f5f5; padding: 20px; text-align: center; border-top: 1px solid #e0e0e0; font-size: 12px; color: #666; }
+          .btn { display: inline-block; background: #0066CC; color: white; padding: 12px 30px; border-radius: 4px; text-decoration: none; font-weight: 600; margin-top: 15px; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1 style="margin: 0; font-size: 24px;">📬 New Enquiry Received</h1>
+            <p style="margin: 5px 0 0 0; font-size: 13px;">Action Required - Follow up within 24 hours</p>
+          </div>
+          <div class="alert">⚡ New enquiry from ${name} - Please follow up within 24 hours</div>
+          <div class="content">
+            <div class="section">
+              <h3 class="title">👤 Client Information</h3>
+              <div class="card">
+                <div class="info-row"><span class="label">Name:</span><span class="value">${name}</span></div>
+                <div class="info-row"><span class="label">Email:</span><span class="value">${email}</span></div>
+                <div class="info-row"><span class="label">Phone:</span><span class="value">${phone}</span></div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3 class="title">📋 Enquiry Details</h3>
+              <div class="card">
+                <div class="info-row"><span class="label">Project Interest:</span><span class="value">${project}</span></div>
+                <div class="info-row"><span class="label">Submitted On:</span><span class="value">${submittedAt}</span></div>
+              </div>
+              <div class="message-box">
+                <strong>Client's Message:</strong>
+                <p style="margin-top: 10px;">${message}</p>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3 class="title">⚡ Recommended Actions</h3>
+              <p style="font-size: 13px; line-height: 1.8;">
+                ✓ Call ${name} at ${phone} to confirm the enquiry<br>
+                ✓ Share relevant project brochures and floor plans<br>
+                ✓ Schedule a site visit at their convenience<br>
+                ✓ Log the enquiry in your CRM system
+              </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+              <a href="mailto:${email}" class="btn">Reply to ${name}</a>
+            </div>
+          </div>
+          <div class="footer">
+            <p>UV Infra - Premium Residential Properties</p>
+            <p style="margin-top: 10px; font-size: 11px; color: #999;">This is an automated notification from your enquiry management system.</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEmailError('');
@@ -134,6 +289,24 @@ export default function EnquiryForm() {
         return;
       }
 
+      // Generate HTML emails
+      const customerHTML = generateCustomerEmailHTML(
+        formData.name,
+        projectName,
+        formData.phone,
+        formData.message,
+        submittedAt
+      );
+
+      const ownerHTML = generateOwnerEmailHTML(
+        formData.name,
+        formData.email,
+        projectName,
+        formData.phone,
+        formData.message,
+        submittedAt
+      );
+
       // Send owner notification email
       if (EMAILJS_CONFIG.templateIds.ownerNotification) {
         console.log('Sending owner notification...');
@@ -148,6 +321,7 @@ export default function EnquiryForm() {
             project: projectName,
             message: formData.message,
             submitted_at: submittedAt,
+            html_message: ownerHTML,
           }
         );
         console.log('Owner notification sent:', ownerResponse);
@@ -166,6 +340,7 @@ export default function EnquiryForm() {
             from_phone: formData.phone,
             message: formData.message,
             submitted_at: submittedAt,
+            html_message: customerHTML,
           }
         );
         console.log('Customer reply sent:', replyResponse);

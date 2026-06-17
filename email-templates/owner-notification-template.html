@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Enquiry - UV Infra</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 13px;
+            opacity: 0.95;
+        }
+
+        .alert-banner {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #856404;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            color: #0066CC;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .enquiry-card {
+            background-color: #f9f9f9;
+            border-left: 4px solid #0066CC;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 13px;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: #333;
+            text-align: right;
+            word-break: break-word;
+            max-width: 50%;
+        }
+
+        .message-box {
+            background-color: #f0f7ff;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 10px;
+            font-style: italic;
+            color: #333;
+            border-left: 4px solid #0066CC;
+        }
+
+        .action-button {
+            display: inline-block;
+            background-color: #0066CC;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .action-button:hover {
+            background-color: #0052A3;
+        }
+
+        .footer {
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 20px;
+            }
+
+            .info-row {
+                flex-direction: column;
+            }
+
+            .info-value {
+                text-align: left;
+                margin-top: 5px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📬 New Enquiry Received</h1>
+            <p>Action Required - Follow up with prospective client</p>
+        </div>
+
+        <!-- Alert Banner -->
+        <div class="alert-banner">
+            ⚡ New enquiry from {{from_name}} - Please follow up within 24 hours
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Client Details -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">👤</span>
+                    Client Information
+                </div>
+                <div class="enquiry-card">
+                    <div class="info-row">
+                        <span class="info-label">Name:</span>
+                        <span class="info-value">{{from_name}}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Email:</span>
+                        <span class="info-value">{{from_email}}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Phone:</span>
+                        <span class="info-value">{{from_phone}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enquiry Details -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">📋</span>
+                    Enquiry Details
+                </div>
+                <div class="enquiry-card">
+                    <div class="info-row">
+                        <span class="info-label">Project Interest:</span>
+                        <span class="info-value">{{project}}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Submitted On:</span>
+                        <span class="info-value">{{submitted_at}}</span>
+                    </div>
+                </div>
+                <div class="message-box">
+                    <strong>Client's Message:</strong>
+                    <p style="margin-top: 10px;">{{message}}</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">⚡</span>
+                    Recommended Actions
+                </div>
+                <p style="font-size: 13px; color: #333; line-height: 1.8;">
+                    ✓ Call {{from_name}} at {{from_phone}} to confirm the enquiry<br>
+                    ✓ Share relevant project brochures and floor plans<br>
+                    ✓ Schedule a site visit at their convenience<br>
+                    ✓ Log the enquiry in your CRM system
+                </p>
+            </div>
+
+            <!-- CTA Button -->
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="mailto:{{from_email}}" class="action-button">
+                    Reply to {{from_name}}
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>UV Infra - Premium Residential Properties</p>
+            <p class="footer-note">This is an automated notification from your enquiry management system.</p>
+        </div>
+    </div>
+</body>
+</html>

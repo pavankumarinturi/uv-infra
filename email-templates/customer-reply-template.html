@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - UV Infra</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .greeting {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .details-section {
+            background-color: #f9f9f9;
+            border-left: 4px solid #0066CC;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .details-section h3 {
+            color: #0066CC;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .detail-value {
+            color: #333;
+            text-align: right;
+            word-break: break-word;
+        }
+
+        .next-steps {
+            background-color: #e8f4fd;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .next-steps h3 {
+            color: #0066CC;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .step {
+            display: flex;
+            padding: 10px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .step-icon {
+            color: #0066CC;
+            font-weight: bold;
+            margin-right: 12px;
+            min-width: 20px;
+        }
+
+        .contact-section {
+            background-color: #f0f7ff;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .contact-section h3 {
+            color: #0066CC;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .contact-item {
+            padding: 8px 0;
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            color: #0066CC;
+            font-weight: bold;
+        }
+
+        .footer {
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .footer-note {
+            font-size: 11px;
+            color: #999;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .signature {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .signature-name {
+            font-weight: 600;
+            color: #0066CC;
+        }
+
+        .signature-title {
+            color: #666;
+            font-size: 13px;
+        }
+
+        a {
+            color: #0066CC;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 20px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+            }
+
+            .detail-value {
+                text-align: left;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Thank You! 🏠</h1>
+            <p>Your enquiry has been received</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Greeting -->
+            <div class="greeting">
+                <p>Dear <strong>{{from_name}}</strong>,</p>
+                <p style="margin-top: 15px;">Thank you for reaching out to UV Infra! We truly appreciate your interest in our premium residential properties. Your enquiry is important to us, and we're excited to help you find your perfect home.</p>
+            </div>
+
+            <!-- Enquiry Details -->
+            <div class="details-section">
+                <h3>📋 Your Enquiry Details</h3>
+                <div class="detail-row">
+                    <span class="detail-label">Project Interested:</span>
+                    <span class="detail-value">{{project}}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Your Phone:</span>
+                    <span class="detail-value">{{from_phone}}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Submitted On:</span>
+                    <span class="detail-value">{{submitted_at}}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Your Message:</span>
+                    <span class="detail-value">{{message}}</span>
+                </div>
+            </div>
+
+            <!-- What Happens Next -->
+            <div class="next-steps">
+                <h3>⏭️ What Happens Next?</h3>
+                <div class="step">
+                    <span class="step-icon">✓</span>
+                    <span>Our team reviews your enquiry carefully</span>
+                </div>
+                <div class="step">
+                    <span class="step-icon">✓</span>
+                    <span>We'll call you within 24 hours with personalized information</span>
+                </div>
+                <div class="step">
+                    <span class="step-icon">✓</span>
+                    <span>Schedule a convenient site visit at your preferred time</span>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-section">
+                <h3>📞 Get In Touch</h3>
+                <p style="font-size: 14px; color: #333; margin-bottom: 15px;">For urgent queries or to speak with us immediately:</p>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <span><strong>+91 73860 86043</strong> (Pavan Kumar Inturi)</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <span><strong>+91 95059 44456</strong></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <span>2Gether Heights, Ameenpur, Hyderabad – 502032</span>
+                </div>
+                <div class="contact-item" style="margin-top: 15px;">
+                    <span class="contact-icon">💬</span>
+                    <span>WhatsApp: <strong>+91 73860 86043</strong></span>
+                </div>
+            </div>
+
+            <!-- Website Link -->
+            <p style="text-align: center; margin: 25px 0; font-size: 14px; color: #666;">
+                Visit our website: <a href="https://uv-infra.com" style="color: #0066CC; font-weight: 600;">www.uv-infra.com</a>
+            </p>
+
+            <!-- Signature -->
+            <div class="signature">
+                <p style="margin-bottom: 15px;">Warm regards,</p>
+                <p class="signature-name">Pavan Kumar Inturi</p>
+                <p class="signature-title">Promoter & Developer – UV Infra</p>
+                <p class="signature-title" style="margin-top: 8px;">Premium Residential Properties in Hyderabad</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>UV Infra - Premium Residential Properties</p>
+            <p class="footer-note">This is an automated confirmation email. Please do not reply to this email.</p>
+        </div>
+    </div>
+</body>
+</html>
