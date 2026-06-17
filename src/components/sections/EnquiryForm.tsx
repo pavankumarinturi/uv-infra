@@ -300,23 +300,30 @@ export default function EnquiryForm() {
       );
 
       // Send ONLY owner notification email (no customer auto-reply to save quota)
-      if (EMAILJS_CONFIG.templateIds.ownerNotification) {
-        console.log('Sending owner notification...');
-        const ownerResponse = await emailjs.send(
-          EMAILJS_CONFIG.serviceId,
-          EMAILJS_CONFIG.templateIds.ownerNotification,
-          {
-            to_email: CONTACT_INFO.email,
-            from_name: formData.name,
-            from_email: formData.email,
-            from_phone: formData.phone,
-            project: projectName,
-            message: formData.message,
-            submitted_at: submittedAt,
-            html_message: ownerHTML,
-          }
-        );
-        console.log('Owner notification sent:', ownerResponse);
+      if (EMAILJS_CONFIG.templateIds.ownerNotification && EMAILJS_CONFIG.serviceId) {
+        try {
+          console.log('Sending owner notification...');
+          const ownerResponse = await emailjs.send(
+            EMAILJS_CONFIG.serviceId,
+            EMAILJS_CONFIG.templateIds.ownerNotification,
+            {
+              to_email: CONTACT_INFO.email,
+              from_name: formData.name,
+              from_email: formData.email,
+              from_phone: formData.phone,
+              project: projectName,
+              message: formData.message,
+              submitted_at: submittedAt,
+              html_message: ownerHTML,
+            }
+          );
+          console.log('Owner notification sent:', ownerResponse);
+        } catch (emailError) {
+          console.error('EmailJS Error:', emailError);
+          throw new Error('Failed to send notification email. Please check EmailJS configuration.');
+        }
+      } else {
+        console.warn('EmailJS not properly configured. Missing template ID or service ID.');
       }
 
       // Also save to database via API
