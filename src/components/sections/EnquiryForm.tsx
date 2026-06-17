@@ -326,12 +326,16 @@ export default function EnquiryForm() {
         console.warn('EmailJS not properly configured. Missing template ID or service ID.');
       }
 
-      // Also save to database via API
-      await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      // Optionally save to database via API (non-blocking)
+      try {
+        await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+      } catch (apiError) {
+        console.warn('API save failed (non-blocking):', apiError);
+      }
 
       setSubmitted(true);
       setFormData({ name: '', email: '', phone: '', project: '', message: '' });
