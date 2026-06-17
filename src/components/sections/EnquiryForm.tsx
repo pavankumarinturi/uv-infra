@@ -300,6 +300,8 @@ export default function EnquiryForm() {
       );
 
       // Send ONLY owner notification email (no customer auto-reply to save quota)
+      let emailSent = false;
+
       if (EMAILJS_CONFIG.templateIds.ownerNotification && EMAILJS_CONFIG.serviceId) {
         try {
           console.log('Sending owner notification...');
@@ -318,12 +320,11 @@ export default function EnquiryForm() {
             }
           );
           console.log('Owner notification sent:', ownerResponse);
+          emailSent = true;
         } catch (emailError) {
           console.error('EmailJS Error:', emailError);
-          throw new Error('Failed to send notification email. Please check EmailJS configuration.');
+          emailSent = false;
         }
-      } else {
-        console.warn('EmailJS not properly configured. Missing template ID or service ID.');
       }
 
       // Optionally save to database via API (non-blocking)
@@ -337,9 +338,14 @@ export default function EnquiryForm() {
         console.warn('API save failed (non-blocking):', apiError);
       }
 
-      setSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', project: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
+      // Show success if email was sent
+      if (emailSent) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', phone: '', project: '', message: '' });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        setEmailError('Failed to send enquiry. Please try again or contact us directly.');
+      }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
       console.error('Error submitting form:', errorMessage);
