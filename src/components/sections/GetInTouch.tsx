@@ -123,24 +123,29 @@ export default function GetInTouch() {
         return;
       }
 
-      if (EMAILJS_CONFIG.templateIds.ownerNotification) {
-        await emailjs.send(
-          EMAILJS_CONFIG.serviceId,
-          EMAILJS_CONFIG.templateIds.ownerNotification,
-          {
-            to_email: CONTACT_INFO.email,
-            from_name: formData.name,
-            from_email: formData.email,
-            from_phone: formData.phone,
-            project: projectName,
-            message: formData.message,
-            submitted_at: submittedAt,
-          }
-        );
-      }
+      // Owner notification is the critical send — show success or error based on this alone
+      await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateIds.ownerNotification,
+        {
+          to_email: CONTACT_INFO.email,
+          from_name: formData.name,
+          from_email: formData.email,
+          from_phone: formData.phone,
+          project: projectName,
+          message: formData.message,
+          submitted_at: submittedAt,
+        }
+      );
 
+      // Owner notification succeeded — show success immediately
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', project: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
+
+      // Send customer auto-reply in background — never blocks or affects UI
       if (EMAILJS_CONFIG.templateIds.customerReply) {
-        await emailjs.send(
+        emailjs.send(
           EMAILJS_CONFIG.serviceId,
           EMAILJS_CONFIG.templateIds.customerReply,
           {
@@ -151,20 +156,17 @@ export default function GetInTouch() {
             message: formData.message,
             submitted_at: submittedAt,
           }
-        );
+        ).catch((err) => console.warn('Auto-reply skipped:', err));
       }
 
-      await fetch('/api/enquiry', {
+      // Log submission to API in background (non-critical)
+      fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
-      });
+      }).catch(() => {});
 
-      setSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', project: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
       setEmailError('Failed to send enquiry. Please try again or contact us directly.');
     } finally {
       setLoading(false);

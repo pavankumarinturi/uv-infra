@@ -7,7 +7,7 @@ export const EMAILJS_CONFIG = {
   serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
   templateIds: {
     ownerNotification: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_OWNER || '',
-    customerReply: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_REPLY || '',
+    customerReply: (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_REPLY || '').replace(/^﻿/, ''),
   },
 };
 

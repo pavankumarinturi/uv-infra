@@ -74,3 +74,5 @@ SETUP_EMIAL.md
 
 # Root index.html (Next.js apps don't use this)
 /index.html
+
+.vercel
