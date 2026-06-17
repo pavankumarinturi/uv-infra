@@ -289,16 +289,6 @@ export default function EnquiryForm() {
         return;
       }
 
-      // Generate HTML email for owner notification only
-      const ownerHTML = generateOwnerEmailHTML(
-        formData.name,
-        formData.email,
-        projectName,
-        formData.phone,
-        formData.message,
-        submittedAt
-      );
-
       // Send ONLY owner notification email (no customer auto-reply to save quota)
       let emailSent = false;
 
@@ -316,7 +306,6 @@ export default function EnquiryForm() {
               project: projectName,
               message: formData.message,
               submitted_at: submittedAt,
-              html_message: ownerHTML,
             }
           );
           console.log('Owner notification sent:', ownerResponse);
