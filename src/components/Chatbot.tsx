@@ -402,12 +402,13 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* Chat Launcher Button */}
+      {/* Chat Launcher Button — hidden on mobile when chat is open to avoid overlap */}
       <button
         onClick={handleOpen}
-        className="fixed z-[9999] rounded-full bg-gradient-to-br from-blue-500 to-blue-900 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center
+        className={`fixed z-[9999] rounded-full bg-gradient-to-br from-blue-500 to-blue-900 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all flex items-center justify-center
           w-14 h-14 bottom-4 right-4
-          md:w-16 md:h-16 md:bottom-7 md:right-7"
+          md:w-16 md:h-16 md:bottom-7 md:right-7
+          ${isOpen ? 'hidden md:flex' : 'flex'}`}
         aria-label="Open UV Infra Chat"
       >
         <svg className="w-7 h-7" fill="white" viewBox="0 0 24 24">
@@ -416,15 +417,26 @@ const Chatbot = () => {
         {!isOpen && <span className="absolute top-1 right-1 w-4 h-4 bg-red-500 rounded-full text-white text-xs flex items-center justify-center">1</span>}
       </button>
 
-      {/* Chat Window */}
+      {/* Mobile backdrop — tap outside to close */}
       {isOpen && (
-        <div className="fixed z-[9998] bg-white rounded-2xl shadow-2xl flex flex-col border border-blue-200 overflow-hidden
-          w-[calc(100vw-32px)] max-h-[calc(100vh-200px)] bottom-20 right-4 max-w-sm
-          sm:w-[calc(100vw-32px)] sm:max-h-[calc(100vh-200px)] sm:bottom-20 sm:right-4
-          md:w-96 md:max-h-[600px] md:bottom-28 md:right-8
-          lg:w-[400px] lg:max-h-[680px] lg:bottom-28 lg:right-8">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-blue-500 to-blue-900 text-white p-4 flex items-center justify-between">
+        <div
+          className="fixed inset-0 z-[9997] bg-black/30 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Chat Window
+          Mobile:  bottom sheet — full width, anchored to bottom, 90 % of viewport height
+          Desktop: floating panel — bottom-right corner.
+                   max-h uses CSS min() so it never exceeds 580 px BUT also never
+                   pushes the header above the viewport on short laptop screens.       */}
+      {isOpen && (
+        <div className="fixed z-[9998] bg-white shadow-2xl flex flex-col border border-blue-200 overflow-hidden
+          inset-x-0 bottom-0 max-h-[90vh] rounded-t-2xl
+          md:inset-x-auto md:bottom-20 md:right-8 md:w-96 md:max-h-[min(580px,calc(100vh-120px))] md:rounded-2xl
+          lg:w-[400px]">
+          {/* Header — always pinned to top of window */}
+          <div className="bg-gradient-to-r from-blue-500 to-blue-900 text-white p-4 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-lg">🏠</div>
               <div>
@@ -434,7 +446,8 @@ const Chatbot = () => {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-xl font-bold hover:opacity-80 transition"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition text-xl font-bold"
+              aria-label="Close chat"
             >
               ✕
             </button>
