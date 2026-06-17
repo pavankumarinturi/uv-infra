@@ -315,8 +315,11 @@ export default function EnquiryForm() {
           );
           console.log('Owner notification sent:', ownerResponse);
           emailSent = true;
-        } catch (emailError) {
+        } catch (emailError: any) {
           console.error('EmailJS Error:', emailError);
+          console.error('Error Status:', emailError?.status);
+          console.error('Error Response:', emailError?.response);
+          console.error('Error Message:', emailError?.message);
           emailSent = false;
         }
       }
