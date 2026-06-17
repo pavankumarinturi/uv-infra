@@ -305,12 +305,10 @@ export default function EnquiryForm() {
             EMAILJS_CONFIG.templateIds.ownerNotification,
             {
               to_email: CONTACT_INFO.email,
-              from_phone: formData.phone,
               project: projectName,
+              from_phone: formData.phone,
               message: formData.message,
               submitted_at: submittedAt,
-              from_name: formData.name,
-              from_email: formData.email,
             }
           );
           console.log('Owner notification sent:', ownerResponse);
