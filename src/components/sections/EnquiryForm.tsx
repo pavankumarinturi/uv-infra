@@ -289,15 +289,7 @@ export default function EnquiryForm() {
         return;
       }
 
-      // Generate HTML emails
-      const customerHTML = generateCustomerEmailHTML(
-        formData.name,
-        projectName,
-        formData.phone,
-        formData.message,
-        submittedAt
-      );
-
+      // Generate HTML email for owner notification only
       const ownerHTML = generateOwnerEmailHTML(
         formData.name,
         formData.email,
@@ -307,7 +299,7 @@ export default function EnquiryForm() {
         submittedAt
       );
 
-      // Send owner notification email
+      // Send ONLY owner notification email (no customer auto-reply to save quota)
       if (EMAILJS_CONFIG.templateIds.ownerNotification) {
         console.log('Sending owner notification...');
         const ownerResponse = await emailjs.send(
@@ -325,25 +317,6 @@ export default function EnquiryForm() {
           }
         );
         console.log('Owner notification sent:', ownerResponse);
-      }
-
-      // Send customer auto-reply email
-      if (EMAILJS_CONFIG.templateIds.customerReply) {
-        console.log('Sending customer auto-reply...');
-        const replyResponse = await emailjs.send(
-          EMAILJS_CONFIG.serviceId,
-          EMAILJS_CONFIG.templateIds.customerReply,
-          {
-            from_email: formData.email,
-            from_name: formData.name,
-            project: projectName,
-            from_phone: formData.phone,
-            message: formData.message,
-            submitted_at: submittedAt,
-            html_message: customerHTML,
-          }
-        );
-        console.log('Customer reply sent:', replyResponse);
       }
 
       // Also save to database via API
