@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Modal from '@/components/ui/Modal';
+import BookVisitModal from './BookVisitModal';
 
 interface FloorPlan {
   id: string;
@@ -73,9 +74,81 @@ const floorPlans: FloorPlan[] = [
   },
 ];
 
+function downloadPDF(plan: FloorPlan) {
+  const win = window.open('', '_blank');
+  if (!win) return;
+
+  win.document.write(`<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>${plan.name} – UV Infra</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Georgia, serif; color: #1a1a2e; padding: 40px; max-width: 720px; margin: auto; }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid #1d4ed8; padding-bottom: 16px; margin-bottom: 24px; }
+    .brand { font-size: 22px; font-weight: bold; color: #1d4ed8; letter-spacing: 1px; }
+    .brand-sub { font-size: 11px; color: #64748b; letter-spacing: 2px; text-transform: uppercase; }
+    .date { font-size: 11px; color: #64748b; text-align: right; }
+    h1 { font-size: 28px; color: #1a1a2e; margin-bottom: 4px; }
+    .price { font-size: 18px; color: #1d4ed8; font-weight: bold; margin-bottom: 20px; }
+    .specs { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    .spec-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px 14px; }
+    .spec-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-family: Arial, sans-serif; margin-bottom: 4px; }
+    .spec-value { font-size: 15px; font-weight: bold; }
+    h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-family: Arial, sans-serif; margin-bottom: 12px; border-top: 1px solid #e2e8f0; padding-top: 16px; }
+    .features { list-style: none; }
+    .features li { display: flex; align-items: flex-start; gap: 8px; padding: 6px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+    .features li::before { content: "✓"; color: #1d4ed8; font-weight: bold; flex-shrink: 0; }
+    .footer { margin-top: 32px; padding-top: 16px; border-top: 2px solid #1d4ed8; display: flex; justify-content: space-between; font-size: 11px; color: #64748b; font-family: Arial, sans-serif; }
+    .footer strong { color: #1a1a2e; }
+    @media print {
+      body { padding: 20px; }
+      @page { margin: 1cm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="brand">UV INFRA</div>
+      <div class="brand-sub">Builders &amp; Developers</div>
+    </div>
+    <div class="date">Generated: ${new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })}</div>
+  </div>
+
+  <h1>${plan.name}</h1>
+  <p class="price">${plan.price}</p>
+
+  <div class="specs">
+    <div class="spec-box"><div class="spec-label">Area</div><div class="spec-value">${plan.area}</div></div>
+    <div class="spec-box"><div class="spec-label">Facing</div><div class="spec-value">${plan.facing}</div></div>
+    <div class="spec-box"><div class="spec-label">Bedrooms</div><div class="spec-value">${plan.bedrooms}</div></div>
+    <div class="spec-box"><div class="spec-label">Bathrooms</div><div class="spec-value">${plan.bathrooms}</div></div>
+  </div>
+
+  <h2>Complete Features</h2>
+  <ul class="features">
+    ${plan.features.map(f => `<li>${f}</li>`).join('')}
+  </ul>
+
+  <div class="footer">
+    <div><strong>📍 Site Address</strong><br/>2Gether Heights, UV's Pearl, Ameenpur, Hyderabad – 502032</div>
+    <div style="text-align:right"><strong>📞 Contact Us</strong><br/>+91 73860 86043<br/>+91 95059 44456</div>
+  </div>
+</body>
+</html>`);
+
+  win.document.close();
+  win.focus();
+  setTimeout(() => { win.print(); }, 400);
+}
+
 export default function FloorPlanViewer() {
   const [selectedPlan, setSelectedPlan] = useState<FloorPlan | null>(null);
   const [activeTab, setActiveTab] = useState<string>('2bhk');
+  const [showBookModal, setShowBookModal] = useState(false);
+  const [bookingPlan, setBookingPlan] = useState<string>('');
 
   return (
     <section id="floor-plans" className="py-20 px-6 bg-background">
@@ -170,7 +243,10 @@ export default function FloorPlanViewer() {
                         </ul>
                       </div>
 
-                      <button className="w-full bg-gradient-to-r from-primary to-dark text-white font-semibold py-3 rounded-lg hover:shadow-lg transition-shadow">
+                      <button
+                        onClick={() => { setBookingPlan(plan.name); setShowBookModal(true); }}
+                        className="w-full bg-gradient-to-r from-primary to-dark text-white font-semibold py-3 rounded-lg hover:shadow-lg transition-shadow"
+                      >
                         Schedule a Site Visit
                       </button>
                     </div>
@@ -179,6 +255,13 @@ export default function FloorPlanViewer() {
           </div>
         </div>
       </div>
+
+      {showBookModal && (
+        <BookVisitModal
+          initialProject={bookingPlan}
+          onClose={() => setShowBookModal(false)}
+        />
+      )}
 
       {/* Floor Plan Modal */}
       <Modal
@@ -232,10 +315,16 @@ export default function FloorPlanViewer() {
 
             {/* CTA Buttons */}
             <div className="grid grid-cols-2 gap-4">
-              <button className="bg-gradient-to-r from-primary to-dark text-white font-semibold py-3 rounded-lg hover:shadow-lg transition-shadow">
+              <button
+                onClick={() => downloadPDF(selectedPlan)}
+                className="bg-gradient-to-r from-primary to-dark text-white font-semibold py-3 rounded-lg hover:shadow-lg transition-shadow"
+              >
                 Download PDF
               </button>
-              <button className="bg-white border-2 border-primary text-primary font-semibold py-3 rounded-lg hover:bg-primary/5 transition-colors">
+              <button
+                onClick={() => { setBookingPlan(selectedPlan.name); setSelectedPlan(null); setShowBookModal(true); }}
+                className="bg-white border-2 border-primary text-primary font-semibold py-3 rounded-lg hover:bg-primary/5 transition-colors"
+              >
                 Schedule Visit
               </button>
             </div>

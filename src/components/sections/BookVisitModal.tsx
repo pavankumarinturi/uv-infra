@@ -6,6 +6,7 @@ import { EMAILJS_CONFIG, CONTACT_INFO } from '@/lib/emailjs-config';
 
 interface Props {
   onClose: () => void;
+  initialProject?: string;
 }
 
 interface FormData {
@@ -25,13 +26,13 @@ interface FormErrors {
 
 const TIME_SLOTS = ['Morning (9am – 12pm)', 'Afternoon (12pm – 4pm)', 'Evening (4pm – 7pm)'];
 
-export default function BookVisitModal({ onClose }: Props) {
+export default function BookVisitModal({ onClose, initialProject = '' }: Props) {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
     date: '',
     timeSlot: '',
-    project: '',
+    project: initialProject,
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
@@ -78,7 +79,7 @@ export default function BookVisitModal({ onClose }: Props) {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: { preventDefault(): void }) => {
     e.preventDefault();
     setSubmitError('');
     if (!validate()) return;
@@ -251,6 +252,9 @@ export default function BookVisitModal({ onClose }: Props) {
                 >
                   <option value="">Select a project</option>
                   <option value="Sunshine Sapphire – 2BHK">Sunshine Sapphire – 2BHK</option>
+                  <option value="2 BHK Floor Plan">2 BHK Floor Plan</option>
+                  <option value="3 BHK Floor Plan">3 BHK Floor Plan</option>
+                  <option value="4 BHK Villa">4 BHK Villa</option>
                   <option value="UV's Pearl – Ongoing">UV's Pearl – Ongoing</option>
                   <option value="General Visit">General Visit</option>
                 </select>
