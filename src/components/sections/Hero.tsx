@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import BookVisitModal from './BookVisitModal';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const [showBookModal, setShowBookModal] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   // Scroll-triggered fade-in animation
@@ -25,6 +27,7 @@ export default function Hero() {
   }, []);
 
   return (
+    <>
     <section
       ref={sectionRef}
       id="hero"
@@ -82,7 +85,10 @@ export default function Hero() {
               <button className="px-8 py-4 bg-primary text-white rounded-lg hover:bg-dark transition-colors duration-200 font-semibold text-lg">
                 Explore Projects
               </button>
-              <button className="px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-blue-50 transition-colors duration-200 font-semibold text-lg">
+              <button
+                onClick={() => setShowBookModal(true)}
+                className="px-8 py-4 border-2 border-primary text-primary rounded-lg hover:bg-blue-50 transition-colors duration-200 font-semibold text-lg"
+              >
                 Schedule a Visit
               </button>
             </div>
@@ -174,7 +180,10 @@ export default function Hero() {
                       +91 73860 86043
                     </p>
                   </div>
-                  <button className="w-full sm:w-auto px-6 py-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-800 rounded-lg hover:from-yellow-500 hover:to-yellow-600 transition-all duration-200 font-semibold text-sm whitespace-nowrap">
+                  <button
+                    onClick={() => setShowBookModal(true)}
+                    className="w-full sm:w-auto px-6 py-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-800 rounded-lg hover:from-yellow-500 hover:to-yellow-600 transition-all duration-200 font-semibold text-sm whitespace-nowrap"
+                  >
                     Book Visit →
                   </button>
                 </div>
@@ -184,5 +193,8 @@ export default function Hero() {
         </div>
       </div>
     </section>
+
+    {showBookModal && <BookVisitModal onClose={() => setShowBookModal(false)} />}
+    </>
   );
 }

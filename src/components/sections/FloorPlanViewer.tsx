@@ -67,7 +67,6 @@ const floorPlans: FloorPlan[] = [
       'Multiple attached bathrooms',
       'Grand living & dining spaces',
       'Chef kitchen with island',
-      'Private swimming pool',
       'Home theater',
       'Multi-car garage',
     ],

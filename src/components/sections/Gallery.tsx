@@ -34,13 +34,6 @@ const galleryImages: GalleryImage[] = [
     description: 'Lush green spaces and landscaped gardens for residents',
   },
   {
-    id: '4',
-    title: 'Swimming Pool',
-    category: 'amenities',
-    image: '🏊',
-    description: 'Olympic-size swimming pool with modern facilities',
-  },
-  {
     id: '5',
     title: 'Fitness Center',
     category: 'amenities',
