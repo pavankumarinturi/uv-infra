@@ -75,7 +75,7 @@ export default function Hero() {
 
             {/* Description */}
             <p className="text-lg text-gray-700 mb-8 max-w-xl leading-relaxed">
-              UV Infra delivers premium residential apartments across Hyderabad —
+              UV Infra delivers premium residential apartments in Ameenpur, Hyderabad —
               quality construction, thoughtful design, and transparent dealings
               from foundation to key handover.
             </p>
