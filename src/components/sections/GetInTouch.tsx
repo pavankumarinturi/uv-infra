@@ -148,6 +148,7 @@ export default function GetInTouch() {
           EMAILJS_CONFIG.serviceId,
           EMAILJS_CONFIG.templateIds.customerReply,
           {
+            to_email: formData.email,
             from_email: formData.email,
             from_name: formData.name,
             project: projectName,
