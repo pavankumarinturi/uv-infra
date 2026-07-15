@@ -60,7 +60,7 @@ export default function Footer() {
             <div>
               <p className="text-xs text-primary uppercase font-semibold tracking-wider mb-2">Site Address</p>
               <div className="text-xs text-gray-300 space-y-0.5">
-                <p>2Gether Heights, Ameenpur</p>
+                <p>RK Homes, Ameenpur</p>
                 <p>Hyderabad – 502032</p>
                 <p>Telangana, India</p>
               </div>

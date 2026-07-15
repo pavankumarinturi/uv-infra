@@ -262,7 +262,7 @@ export default function BookVisitModal({ onClose, initialProject = '' }: Props) 
               {/* Site address */}
               <div className="bg-blue-50 rounded-lg p-3 text-sm text-gray-700">
                 <p className="font-semibold text-dark mb-0.5">📍 Site Location</p>
-                <p>2Gether Heights, UV's Pearl, Ameenpur, Hyderabad – 502032</p>
+                <p>RK Homes, UV's Pearl, Ameenpur, Hyderabad – 502032</p>
               </div>
 
               <button

@@ -234,7 +234,7 @@ export default function GetInTouch() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-primary uppercase tracking-wider">Site Address</p>
-                  <p className="text-sm font-semibold text-dark mt-1">2Gether Heights (Ekam & Dviyam Block)</p>
+                  <p className="text-sm font-semibold text-dark mt-1">RK Homes (Ekam & Dviyam Block)</p>
                   <p className="text-sm text-gray-600 mt-0.5">UV's Pearl, Ameenpur</p>
                   <p className="text-sm text-gray-600">Hyderabad – 502032, Telangana</p>
                 </div>

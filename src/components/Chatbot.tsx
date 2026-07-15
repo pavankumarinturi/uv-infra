@@ -38,7 +38,7 @@ const Chatbot = () => {
       },
       pearl: {
         name: "UV's Pearl",
-        location: '2Gether Heights (Ekam Block & Dviyam Block), Ameenpur',
+        location: 'RK Homes (Ekam Block & Dviyam Block), Ameenpur',
         status: 'Ongoing 🔨',
       },
       new: {
@@ -51,7 +51,7 @@ const Chatbot = () => {
       phone1: '+91-73860 86043',
       phone2: '+91-9505944456',
       email: 'Pavankumarinturi@uv-infra.com',
-      address: '2Gether Heights, Ameenpur, Hyderabad – 502032',
+      address: 'RK Homes, Ameenpur, Hyderabad – 502032',
       visitHours: {
         weekdays: '10:00 AM – 6:00 PM',
         weekends: '9:00 AM – 7:00 PM',
