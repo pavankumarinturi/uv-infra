@@ -49,12 +49,20 @@ export default function Projects() {
   return (
     <section id="projects" className="py-20 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-dark mb-4 font-playfair text-center">
-          Our Projects
+        <h2 className="text-4xl md:text-5xl font-bold text-dark mb-3 font-playfair text-center">
+          Ongoing Projects
         </h2>
-        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-gray-600 mb-3 max-w-2xl mx-auto">
           Discover our flagship residential projects in Ameenpur, Hyderabad
         </p>
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+          <span className="px-4 py-1.5 bg-green-100 text-green-700 text-sm font-semibold rounded-full border border-green-300">
+            ✅ Available for Booking
+          </span>
+          <span className="px-4 py-1.5 bg-amber-100 text-amber-700 text-sm font-semibold rounded-full border border-amber-300">
+            🏗️ Handover by April 2027
+          </span>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {projects.map((project) => (
             <div
