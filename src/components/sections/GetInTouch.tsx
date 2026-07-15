@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { EMAILJS_CONFIG, CONTACT_INFO } from '@/lib/emailjs-config';
 
@@ -34,11 +34,6 @@ export default function GetInTouch() {
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
 
-  useEffect(() => {
-    if (EMAILJS_CONFIG.publicKey) {
-      emailjs.init(EMAILJS_CONFIG.publicKey);
-    }
-  }, []);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
