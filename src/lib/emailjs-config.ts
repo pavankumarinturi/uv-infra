@@ -2,12 +2,11 @@
 // Set these values after creating EmailJS account and templates
 
 export const EMAILJS_CONFIG = {
-  // Get these from: https://dashboard.emailjs.com
-  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '',
-  serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'UmSAjFVRfxIV3RNsL',
+  serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_me9om8g',
   templateIds: {
-    ownerNotification: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_OWNER || '',
-    customerReply: (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_REPLY || '').replace(/^﻿/, ''),
+    ownerNotification: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_OWNER || 'template_rjd652s',
+    customerReply: (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_REPLY || 'template_nfhpuxx').replace(/^﻿/, ''),
   },
 };
 
