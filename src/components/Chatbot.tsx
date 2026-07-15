@@ -49,7 +49,7 @@ const Chatbot = () => {
     contact: {
       name: 'Pavan Kumar Inturi',
       phone1: '+91 73860 86043',
-      phone2: '+91 95059 44456',
+      phone2: '+91-9505944456',
       email: 'Pavankumarinturi@uv-infra.com',
       address: '2Gether Heights, Ameenpur, Hyderabad – 502032',
       visitHours: {

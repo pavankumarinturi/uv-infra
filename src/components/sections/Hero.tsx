@@ -153,7 +153,7 @@ export default function Hero() {
                     { label: 'Configuration', value: '2BHK' },
                     { label: 'Super Built-up Area', value: '1150 sq.ft' },
                     { label: 'Facing Options', value: 'East & West' },
-                    { label: 'Road Width', value: '40 feet' },
+                    { label: 'Road Width', value: '33 feet' },
                     { label: 'Structure', value: 'RCC M25' },
                     { label: 'Flooring', value: 'Vitrified' },
                   ].map((spec, index) => (

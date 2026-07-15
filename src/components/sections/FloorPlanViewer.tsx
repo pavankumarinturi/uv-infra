@@ -115,7 +115,7 @@ function downloadPDF(plan: FloorPlan) {
 
   <div class="footer">
     <div><strong>📍 Site Address</strong><br/>2Gether Heights, UV's Pearl, Ameenpur, Hyderabad – 502032</div>
-    <div style="text-align:right"><strong>📞 Contact Us</strong><br/>+91 73860 86043<br/>+91 95059 44456</div>
+    <div style="text-align:right"><strong>📞 Contact Us</strong><br/>+91 73860 86043<br/>+91-9505944456</div>
   </div>
 </body>
 </html>`);
