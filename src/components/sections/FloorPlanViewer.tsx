@@ -41,11 +41,11 @@ const floorPlans: FloorPlan[] = [
     id: '3bhk',
     name: '3 BHK Floor Plan',
     bhk: '3 BHK',
-    area: '1,650 sq.ft.',
+    area: '1,675 - 1,710 sq.ft.',
     price: '₹75 - 85 Lakhs',
     bedrooms: 3,
-    bathrooms: 2,
-    facing: 'North & South',
+    bathrooms: 3,
+    facing: 'East & West',
     image: '/3bhkfloorplan.png',
     features: [
       'Master bedroom with attached bathroom & balcony',
@@ -53,7 +53,7 @@ const floorPlans: FloorPlan[] = [
       'Large living & dining area',
       'Premium modular kitchen',
       'Separate utility & laundry area',
-      'Two parking spaces',
+      'Two parking spaces (one for Bike and one for Car)',
     ],
   },
 ];
