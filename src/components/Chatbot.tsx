@@ -42,7 +42,7 @@ const Chatbot = () => {
         status: 'Ongoing 🔨',
       },
       new: {
-        name: 'New Launch 2025',
+        name: 'New Launch 2026-2027',
         status: 'Upcoming 🔮',
       },
     },
@@ -123,7 +123,7 @@ const Chatbot = () => {
         chips: [
           { emoji: '✅', label: 'Sunshine Sapphire', key: 'proj_sapphire' },
           { emoji: '🔨', label: "UV's Pearl", key: 'proj_pearl' },
-          { emoji: '🔮', label: 'New Launch 2025', key: 'proj_new' },
+          { emoji: '🔮', label: 'New Launch 2026-2027', key: 'proj_new' },
           { emoji: '🏠', label: 'Back to Main Menu', key: 'main' },
         ],
       },
@@ -145,7 +145,7 @@ const Chatbot = () => {
         ],
       },
       proj_new: {
-        text: `🔮 New Launch 2025\n\n🎉 Exciting new residential project coming soon!\n\nRegister your interest to be among the first to know about this exclusive launch. Contact us for early booking opportunities and special launch offers!`,
+        text: `🔮 New Launch 2026-2027\n\n🎉 Exciting new residential project coming soon!\n\nRegister your interest to be among the first to know about this exclusive launch. Contact us for early booking opportunities and special launch offers!`,
         chips: [
           { emoji: '📞', label: 'Contact Details', key: 'contact' },
           { emoji: '🏠', label: 'Main Menu', key: 'main' },
