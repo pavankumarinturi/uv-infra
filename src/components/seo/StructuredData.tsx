@@ -47,7 +47,7 @@ export default function StructuredData() {
         name: 'What are the available floor plans?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'UV Infra offers 2BHK, 3BHK apartments and 4BHK villas with premium amenities and modern designs.',
+          text: 'UV Infra offers 2BHK and 3BHK premium apartments with modern amenities and thoughtful designs.',
         },
       },
       {
@@ -55,7 +55,7 @@ export default function StructuredData() {
         name: 'What is the price range?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Our properties range from ₹45 Lakhs for 2BHK apartments to ₹1.5 Crores for 4BHK villas.',
+          text: 'Our properties range from ₹56 Lakhs for 2BHK apartments to ₹85 Lakhs for 3BHK luxury apartments.',
         },
       },
       {

@@ -27,8 +27,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "UV Infra – Premium Residential Projects in Hyderabad",
-  description: "Discover premium 2BHK, 3BHK apartments and 4BHK villas by UV Infra in Hyderabad. Modern architecture, luxury amenities, and thoughtfully designed floor plans. Contact +91 73860 86043",
-  keywords: ["premium apartments", "residential projects", "flats in hyderabad", "2bhk", "3bhk", "villas"],
+  description: "Discover premium 2BHK, 3BHK apartments by UV Infra in Hyderabad. Modern architecture, luxury amenities, and thoughtfully designed floor plans. Contact +91 73860 86043",
+  keywords: ["premium apartments", "residential projects", "flats in hyderabad", "2bhk", "3bhk"],
   authors: [{ name: "UV Infra" }],
   creator: "UV Infra",
   publisher: "UV Infra",

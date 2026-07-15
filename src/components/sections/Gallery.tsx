@@ -54,56 +54,6 @@ const EVChargingIcon = () => (
   </svg>
 );
 
-const CommunityHallIcon = () => (
-  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 drop-shadow-lg">
-    <path d="M10 66V34L40 12l30 22v32H10Z" fill="white" fillOpacity="0.15" stroke="white" strokeWidth="3" strokeLinejoin="round"/>
-    <path d="M4 36l36-26 36 26" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-    <rect x="28" y="44" width="24" height="22" rx="3" fill="white" fillOpacity="0.25" stroke="white" strokeWidth="2.5"/>
-    <rect x="14" y="42" width="12" height="12" rx="2" fill="white" fillOpacity="0.25" stroke="white" strokeWidth="2"/>
-    <rect x="54" y="42" width="12" height="12" rx="2" fill="white" fillOpacity="0.25" stroke="white" strokeWidth="2"/>
-    <line x1="40" y1="44" x2="40" y2="66" stroke="white" strokeWidth="1.5" strokeDasharray="3,2"/>
-    <path d="M32 20l5-5 5 5" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-  </svg>
-);
-
-const GardenIcon = () => (
-  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 drop-shadow-lg">
-    <ellipse cx="30" cy="28" rx="18" ry="18" fill="white" fillOpacity="0.2" stroke="white" strokeWidth="2.5"/>
-    <ellipse cx="50" cy="24" rx="16" ry="16" fill="white" fillOpacity="0.2" stroke="white" strokeWidth="2.5"/>
-    <ellipse cx="40" cy="34" rx="14" ry="14" fill="white" fillOpacity="0.25" stroke="white" strokeWidth="2.5"/>
-    <line x1="40" y1="46" x2="40" y2="66" stroke="white" strokeWidth="3.5" strokeLinecap="round"/>
-    <path d="M24 66h32" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M32 56l8 10" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-    <path d="M48 54l-8 12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-    <circle cx="20" cy="60" r="4" fill="white" fillOpacity="0.3"/>
-    <circle cx="60" cy="58" r="3" fill="white" fillOpacity="0.3"/>
-  </svg>
-);
-
-const GymIcon = () => (
-  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 drop-shadow-lg">
-    <rect x="4" y="32" width="14" height="16" rx="4" fill="white" fillOpacity="0.3" stroke="white" strokeWidth="2.5"/>
-    <rect x="62" y="32" width="14" height="16" rx="4" fill="white" fillOpacity="0.3" stroke="white" strokeWidth="2.5"/>
-    <rect x="18" y="26" width="12" height="28" rx="4" fill="white" fillOpacity="0.25" stroke="white" strokeWidth="2.5"/>
-    <rect x="50" y="26" width="12" height="28" rx="4" fill="white" fillOpacity="0.25" stroke="white" strokeWidth="2.5"/>
-    <line x1="30" y1="40" x2="50" y2="40" stroke="white" strokeWidth="5" strokeLinecap="round"/>
-    <circle cx="40" cy="40" r="6" fill="white" fillOpacity="0.15" stroke="white" strokeWidth="2"/>
-    <circle cx="40" cy="18" r="6" fill="white" fillOpacity="0.3" stroke="white" strokeWidth="2.5"/>
-    <path d="M34 24l-4 8h20l-4-8" stroke="white" strokeWidth="2" strokeLinejoin="round"/>
-  </svg>
-);
-
-const KidsPlayIcon = () => (
-  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 drop-shadow-lg">
-    <line x1="14" y1="8" x2="14" y2="72" stroke="white" strokeWidth="3.5" strokeLinecap="round"/>
-    <line x1="66" y1="8" x2="66" y2="72" stroke="white" strokeWidth="3.5" strokeLinecap="round"/>
-    <path d="M14 16l52-8" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M28 16L22 42h36L50 16" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-    <rect x="22" y="42" width="36" height="10" rx="3" fill="white" fillOpacity="0.3" stroke="white" strokeWidth="2.5"/>
-    <circle cx="40" cy="12" r="5" fill="white" fillOpacity="0.35" stroke="white" strokeWidth="2.5"/>
-    <path d="M18 64q22-12 44 0" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-  </svg>
-);
 
 const galleryImages: GalleryImage[] = [
   {
@@ -173,42 +123,6 @@ const galleryImages: GalleryImage[] = [
     icon: <EVChargingIcon />,
     gradient: 'from-emerald-500 to-green-800',
     description: 'Electric vehicle & e-bike charging stations in the parking area',
-  },
-  {
-    id: 'a4',
-    title: 'Community Hall',
-    category: 'amenities',
-    image: '',
-    icon: <CommunityHallIcon />,
-    gradient: 'from-purple-500 to-violet-800',
-    description: 'Spacious multipurpose hall for celebrations, meetings and social events',
-  },
-  {
-    id: 'a5',
-    title: 'Landscaped Gardens',
-    category: 'amenities',
-    image: '',
-    icon: <GardenIcon />,
-    gradient: 'from-teal-500 to-green-700',
-    description: 'Beautifully maintained green spaces, walking paths and sit-out areas',
-  },
-  {
-    id: 'a6',
-    title: 'Fully Equipped Gym',
-    category: 'amenities',
-    image: '',
-    icon: <GymIcon />,
-    gradient: 'from-rose-500 to-red-700',
-    description: 'Modern gymnasium with cardio machines, weights and trained staff',
-  },
-  {
-    id: 'a7',
-    title: "Children's Play Area",
-    category: 'amenities',
-    image: '',
-    icon: <KidsPlayIcon />,
-    gradient: 'from-pink-500 to-fuchsia-700',
-    description: 'Safe, shaded playground with modern equipment for all ages',
   },
 ];
 

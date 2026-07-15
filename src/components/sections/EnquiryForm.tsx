@@ -114,7 +114,6 @@ export default function EnquiryForm() {
     const projectMap: { [key: string]: string } = {
       project1: 'Premium Residences - 2BHK',
       project2: 'Luxury Apartments - 3BHK',
-      project3: 'Grand Villas - 4BHK',
       general: 'General Enquiry',
     };
 
@@ -256,7 +255,6 @@ export default function EnquiryForm() {
                   <option value="">Select a project</option>
                   <option value="project1">Premium Residences - 2BHK</option>
                   <option value="project2">Luxury Apartments - 3BHK</option>
-                  <option value="project3">Grand Villas - 4BHK</option>
                   <option value="general">General Enquiry</option>
                 </select>
                 {errors.project && <p className="text-red-500 text-sm mt-1">{errors.project}</p>}

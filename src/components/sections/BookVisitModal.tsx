@@ -254,7 +254,6 @@ export default function BookVisitModal({ onClose, initialProject = '' }: Props) 
                   <option value="Sunshine Sapphire – 2BHK">Sunshine Sapphire – 2BHK</option>
                   <option value="2 BHK Floor Plan">2 BHK Floor Plan</option>
                   <option value="3 BHK Floor Plan">3 BHK Floor Plan</option>
-                  <option value="4 BHK Villa">4 BHK Villa</option>
                   <option value="UV's Pearl – Ongoing">UV's Pearl – Ongoing</option>
                   <option value="General Visit">General Visit</option>
                 </select>
