@@ -96,6 +96,10 @@ export default function GetInTouch() {
     }
 
     setLoading(true);
+
+    // Snapshot form data before any async work so resets don't affect the sends
+    const data = { ...formData };
+
     try {
       const projectMap: { [key: string]: string } = {
         project1: 'Premium Residences - 2BHK',
@@ -103,70 +107,56 @@ export default function GetInTouch() {
         general: 'General Enquiry',
       };
 
-      const projectName = projectMap[formData.project] || formData.project;
+      const projectName = projectMap[data.project] || data.project;
       const now = new Date();
       const submittedAt = `${now.toLocaleDateString('en-IN')} ${now.toLocaleTimeString('en-IN')}`;
 
-      if (!EMAILJS_CONFIG.publicKey || !EMAILJS_CONFIG.serviceId) {
-        const response = await fetch('/api/enquiry', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-        });
+      const opts = { publicKey: EMAILJS_CONFIG.publicKey };
 
-        if (response.ok) {
-          setSubmitted(true);
-          setFormData({ name: '', email: '', phone: '', project: '', message: '' });
-          setTimeout(() => setSubmitted(false), 5000);
-        }
-        return;
-      }
-
-      // Owner notification is the critical send — show success or error based on this alone
+      // 1. Owner notification (critical — must succeed)
       await emailjs.send(
         EMAILJS_CONFIG.serviceId,
         EMAILJS_CONFIG.templateIds.ownerNotification,
         {
           to_email: CONTACT_INFO.email,
-          from_name: formData.name,
-          from_email: formData.email,
-          from_phone: formData.phone,
+          from_name: data.name,
+          from_email: data.email,
+          from_phone: data.phone,
           project: projectName,
-          message: formData.message,
+          message: data.message,
           submitted_at: submittedAt,
-        }
+        },
+        opts
       );
 
-      // Owner notification succeeded — show success immediately
+      // 2. Customer auto-reply (awaited — errors are visible but don't block success state)
+      if (EMAILJS_CONFIG.templateIds.customerReply) {
+        try {
+          await emailjs.send(
+            EMAILJS_CONFIG.serviceId,
+            EMAILJS_CONFIG.templateIds.customerReply,
+            {
+              to_email: data.email,
+              from_name: data.name,
+              from_email: data.email,
+              from_phone: data.phone,
+              project: projectName,
+              message: data.message,
+              submitted_at: submittedAt,
+            },
+            opts
+          );
+        } catch (replyErr) {
+          console.error('Customer auto-reply failed:', replyErr);
+        }
+      }
+
       setSubmitted(true);
       setFormData({ name: '', email: '', phone: '', project: '', message: '' });
       setTimeout(() => setSubmitted(false), 5000);
 
-      // Send customer auto-reply in background — never blocks or affects UI
-      if (EMAILJS_CONFIG.templateIds.customerReply) {
-        emailjs.send(
-          EMAILJS_CONFIG.serviceId,
-          EMAILJS_CONFIG.templateIds.customerReply,
-          {
-            to_email: formData.email,
-            from_email: formData.email,
-            from_name: formData.name,
-            project: projectName,
-            from_phone: formData.phone,
-            message: formData.message,
-            submitted_at: submittedAt,
-          }
-        ).catch((err) => console.warn('Auto-reply skipped:', err));
-      }
-
-      // Log submission to API in background (non-critical)
-      fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      }).catch(() => {});
-
     } catch (error) {
+      console.error('Enquiry send failed:', error);
       setEmailError('Failed to send enquiry. Please try again or contact us directly.');
     } finally {
       setLoading(false);
