@@ -177,7 +177,7 @@ export default function Hero() {
                   <div>
                     <p className="text-sm text-gray-600">Call to Enquire</p>
                     <p className="text-lg font-bold text-primary">
-                      +91 73860 86043
+                      +91-73860 86043
                     </p>
                   </div>
                   <button

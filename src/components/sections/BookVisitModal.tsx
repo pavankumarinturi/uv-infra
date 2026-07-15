@@ -108,7 +108,7 @@ export default function BookVisitModal({ onClose, initialProject = '' }: Props) 
       setSubmitted(true);
     } catch (err: any) {
       console.error('Book visit failed:', err?.status, err?.text);
-      setSubmitError('Failed to send request. Please call us directly at +91 73860 86043.');
+      setSubmitError('Failed to send request. Please call us directly at +91-73860 86043.');
     } finally {
       setLoading(false);
     }

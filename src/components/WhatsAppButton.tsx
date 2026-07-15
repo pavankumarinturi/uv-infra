@@ -38,7 +38,7 @@ export default function WhatsAppButton() {
                 <strong>Hours:</strong> Mon-Sat 9AM - 6PM, Sun 10AM - 4PM
               </p>
               <p className="text-xs text-gray-600">
-                For urgent matters, call us directly at <strong>+91 73860 86043</strong>
+                For urgent matters, call us directly at <strong>+91-73860 86043</strong>
               </p>
             </div>
 
@@ -58,7 +58,7 @@ export default function WhatsAppButton() {
 
             <p className="text-xs text-gray-500 text-center">
               Or call us: <a href="tel:+917386086043" className="text-green-600 font-semibold hover:underline">
-                +91 73860 86043
+                +91-73860 86043
               </a>
             </p>
           </div>

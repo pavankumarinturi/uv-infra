@@ -48,7 +48,7 @@ const Chatbot = () => {
     },
     contact: {
       name: 'Pavan Kumar Inturi',
-      phone1: '+91 73860 86043',
+      phone1: '+91-73860 86043',
       phone2: '+91-9505944456',
       email: 'Pavankumarinturi@uv-infra.com',
       address: '2Gether Heights, Ameenpur, Hyderabad – 502032',
@@ -513,7 +513,7 @@ const Chatbot = () => {
               <div className="text-center">
                 <p className="font-bold text-gray-800 mb-2">🙏 Thank you for contacting UV Infra!</p>
                 <p className="text-sm text-gray-600 mb-2">We'll be in touch soon.</p>
-                <p className="text-sm font-semibold text-blue-600">📞 +91 73860 86043 (Pavan Kumar Inturi)</p>
+                <p className="text-sm font-semibold text-blue-600">📞 +91-73860 86043 (Pavan Kumar Inturi)</p>
               </div>
               <button
                 onClick={handleRestart}

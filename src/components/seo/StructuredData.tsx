@@ -63,7 +63,7 @@ export default function StructuredData() {
         name: 'How can I schedule a site visit?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'You can fill out the enquiry form on our website or call us at +91 73860 86043 to schedule a visit.',
+          text: 'You can fill out the enquiry form on our website or call us at +91-73860 86043 to schedule a visit.',
         },
       },
     ],

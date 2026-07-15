@@ -15,7 +15,7 @@ export const CONTACT_INFO = {
   name: 'Pavan Kumar Inturi',
   title: 'Promoter & Developer, UV Infra',
   email: 'Pavankumarinturi@uv-infra.com',
-  phones: ['+91 73860 86043', '+91-9505944456'],
+  phones: ['+91-73860 86043', '+91-9505944456'],
   address: '2Gether Heights (Ekam & Dviyam Block), UV\'s Pearl, Ameenpur, Hyderabad – 502032, Telangana',
   website: 'https://uv-infra.com',
   whatsapp: '+917386086043',
