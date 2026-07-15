@@ -14,6 +14,7 @@ interface FloorPlan {
   bathrooms: number;
   facing: string;
   features: string[];
+  image: string;
 }
 
 const floorPlans: FloorPlan[] = [
@@ -26,6 +27,7 @@ const floorPlans: FloorPlan[] = [
     bedrooms: 2,
     bathrooms: 2,
     facing: 'East & West',
+    image: '/floorplan_2bhk.png',
     features: [
       'Master bedroom with attached bathroom',
       'Spacious living & dining area',
@@ -44,6 +46,7 @@ const floorPlans: FloorPlan[] = [
     bedrooms: 3,
     bathrooms: 2,
     facing: 'North & South',
+    image: '/3bhkfloorplan.png',
     features: [
       'Master bedroom with attached bathroom & balcony',
       'Two spacious guest bedrooms',
@@ -166,18 +169,21 @@ export default function FloorPlanViewer() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Floor Plan Image */}
             <div className="flex flex-col items-center justify-center">
-              <div className="h-96 w-full bg-gradient-to-br from-blue-200 to-blue-300 rounded-lg flex items-center justify-center mb-4">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">📐</div>
-                  <p className="text-dark font-semibold">Interactive Floor Plan</p>
-                  <p className="text-gray-600 text-sm mt-2">Click "View Details" to explore</p>
-                </div>
+              <div className="h-96 w-full rounded-lg mb-4 overflow-hidden border border-blue-200">
+                {floorPlans.filter((p) => p.id === activeTab).map((plan) => (
+                  <img
+                    key={plan.id}
+                    src={plan.image}
+                    alt={plan.name}
+                    className="w-full h-full object-contain bg-white"
+                  />
+                ))}
               </div>
               <button
                 onClick={() => setSelectedPlan(floorPlans.find((p) => p.id === activeTab) || null)}
                 className="w-full bg-gradient-to-r from-primary to-dark text-white font-semibold py-2 rounded-lg hover:shadow-lg transition-shadow"
               >
-                View Details & 3D Model
+                View Details
               </button>
             </div>
 
@@ -252,13 +258,13 @@ export default function FloorPlanViewer() {
       >
         {selectedPlan && (
           <div className="space-y-6">
-            {/* 3D Model Placeholder */}
-            <div className="bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl p-12 flex items-center justify-center h-80">
-              <div className="text-center">
-                <div className="text-7xl mb-4">🏗️</div>
-                <p className="text-dark font-semibold text-xl mb-2">Interactive 3D Floor Plan</p>
-                <p className="text-gray-600">High-quality 3D visualization model here</p>
-              </div>
+            {/* Floor Plan Image */}
+            <div className="rounded-xl overflow-hidden border border-blue-200 h-80 bg-white">
+              <img
+                src={selectedPlan.image}
+                alt={selectedPlan.name}
+                className="w-full h-full object-contain"
+              />
             </div>
 
             {/* Detailed Information */}
