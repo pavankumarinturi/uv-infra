@@ -27,7 +27,7 @@ const projects: Project[] = [
     area: '1,150 sq.ft.',
     amenities: ['Car Parking', 'Power Generator', 'EV Charging Points', 'Security Features'],
     description: 'Modern 2 BHK apartments designed with contemporary architecture and premium amenities. Perfect for young families and professionals.',
-    image: '🏢',
+    image: '/prem_01.png',
   },
   {
     id: 'project2',
@@ -62,8 +62,14 @@ export default function Projects() {
               className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200 hover:shadow-lg transition-shadow cursor-pointer group"
               onClick={() => setSelectedProject(project)}
             >
-              <div className="h-40 bg-gradient-to-r from-primary to-dark rounded-lg mb-4 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <span className="text-6xl">{project.image}</span>
+              <div className="h-40 rounded-lg mb-4 overflow-hidden group-hover:scale-105 transition-transform">
+                {project.image.startsWith('/') ? (
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-r from-primary to-dark flex items-center justify-center">
+                    <span className="text-6xl">{project.image}</span>
+                  </div>
+                )}
               </div>
               <h3 className="text-xl font-bold text-dark mb-2 font-playfair">{project.title}</h3>
               <p className="text-gray-600 text-sm mb-2">{project.type}</p>
@@ -89,8 +95,14 @@ export default function Projects() {
         {selectedProject && (
           <div className="space-y-6">
             {/* Project Image */}
-            <div className="bg-gradient-to-r from-primary to-dark rounded-xl p-12 flex items-center justify-center">
-              <span className="text-8xl">{selectedProject.image}</span>
+            <div className="rounded-xl overflow-hidden h-56">
+              {selectedProject.image.startsWith('/') ? (
+                <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-r from-primary to-dark flex items-center justify-center">
+                  <span className="text-8xl">{selectedProject.image}</span>
+                </div>
+              )}
             </div>
 
             {/* Project Info */}
