@@ -39,7 +39,7 @@ const projects: Project[] = [
     area: '1,650 sq.ft.',
     amenities: ['Private Terrace', 'Modular Kitchen', 'Smart Home Features', 'Concierge Service'],
     description: 'Spacious 3 BHK luxury apartments with state-of-the-art facilities. Designed for the discerning homebuyer.',
-    image: '🏰',
+    image: '/luxy_01.png',
   },
 ];
 
